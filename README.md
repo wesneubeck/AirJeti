@@ -1,61 +1,49 @@
-AirJeti
-day = 1
-*My 100 day challenge*
-first pygame repo
-learning as I go
+AirJeti, day = 2, *My 100 day challenge* 
 
 *
-Completed // further basic set up // player n(right) v(left) button working
-Next // set up movement of attacker east and west
+Working on:
+player movement right to left
+
 *
 
-
-set up the game:  
 background = constant 
-images will be simple
 
-	attacker()
-		triangle
-		moves east to west
-		facing() = rotate range(160degrees):
-		shooting left to right = facing()
-		green
-	enemy()
-		rotating squares	
-		moves north to south
-		shooting left to right- range(45degrees)
-		purple
-	rocks()
-		circles(astroid)
-		moves north to south
-		no shooting
-		grey
 
-	fire() = spacebar
-	reload() = return
+Classes
+attacker()
+	triangle
+	moves left to right on x axis
+		speed
+	facing() = rotate range(160degrees), shooting left to right
+	green
 
-Actions:
-	north to south = random(x.axis), falls() on y.axis
-	east to west = 
-		east = keys[n]
-		west = keys[v]
-	fire() = 
-		direction = where attacker.facing()
-	fire() towards 'player'
+enemy()
+	rotating squares	
+	moves up to down on y axis at constant speed
+		speed = random.value(set_range) 
+	rotation, shooting left to right- range(45degrees)
+	purple
 
-	'rocks' falls() from random.x down y.axis
+rocks()
+	circles(astroid)
+	moves north to south
+		speed = random.value(set_range)
+	no shooting
 	rocks.size = random.value(boundry) #so it can't be too big
+	grey
 
 
 functions
-
-	fire():
+fire() = spacebar
 	bullets = dots(green)
 	fires 3 bullets in the direction 'player' pointing
 
-	reload():
+reload() = return count
 	wait 3 seconds to fire again
+
+score() = number of enemy killed
+	killed() = bullets fired hit enemy
+
+
 	
-	falls() = y.axis(0 --> 600)
-	falls.speed = random.value(boundry)
 
