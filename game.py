@@ -5,9 +5,11 @@ import pygame
 from pygame.locals import *
 #import random
 
+# window
 W = 900
 H = 600
 size = (W, H)
+# player color - green
 green = [0, 250, 0]
 
 class Main:
@@ -16,6 +18,7 @@ class Main:
 		self.clock = pygame.time.Clock()
 		self.display = pygame.display.set_mode(size)
 		pygame.display.set_caption('Aviators')
+# background image
 		self.bg = pygame.image.load("background.jpg")
 		self.bg = pygame.transform.scale(self.bg, size)
 		self.init_game()
@@ -30,19 +33,18 @@ class Main:
 		keys = pygame.key.get_pressed()
 
 		if keys[pygame.K_v]:
+			#left move	
 			self.attacker_top = [self.attacker_top[0]-5, 555]
 			self.attacker_left = [self.attacker_left[0]-5, 580]
 			self.attacker_right = [self.attacker_right[0]-5, 580]
-			print("going left") #test
-			#triangle left move	
 		
 		if keys[pygame.K_n]:
-
-			print("going right") #test
-			#triangle right move	
+			#right move	
+			self.attacker_top = [self.attacker_top[0]+5, 555]
+			self.attacker_left = [self.attacker_left[0]+5, 580]
+			self.attacker_right = [self.attacker_right[0]+5, 580]
 	
 		if keys[pygame.K_SPACE]:
-
 			print("fire")
 			#fire
 

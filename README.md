@@ -1,15 +1,15 @@
-AirJeti, day = 2, *My 100 day challenge* 
+AirJeti, day = 3, *My 100 day challenge* 
 
 *
-Working on:
-player movement right to left
-
+It took me this fucking long to create this simple framework for the game.
+No experience at all.  Good or Bad?
 *
 
+
+
+1 main class
 background = constant 
 
-
-Classes
 attacker()
 	triangle
 	moves left to right on x axis
@@ -32,18 +32,17 @@ rocks()
 	rocks.size = random.value(boundry) #so it can't be too big
 	grey
 
+score() = number of enemy killed
 
-functions
+check input from keyboard
 fire() = spacebar
 	bullets = dots(green)
 	fires 3 bullets in the direction 'player' pointing
 
 reload() = return count
 	wait 3 seconds to fire again
-
-score() = number of enemy killed
 	killed() = bullets fired hit enemy
 
-
+movement()
 	
 
