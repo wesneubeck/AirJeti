@@ -1,94 +1,68 @@
 #!/usr/bin/env python3
 
-
+import sys
 import pygame
 from pygame.locals import *
-import sys
 #import random
 
+W = 900
+H = 600
+size = (W, H)
+green = [0, 250, 0]
 
+class Main:
+	def __init__(self):
+		pygame.init()
+		self.clock = pygame.time.Clock()
+		self.display = pygame.display.set_mode(size)
+		pygame.display.set_caption('Aviators')
+		self.bg = pygame.image.load("background.jpg")
+		self.bg = pygame.transform.scale(self.bg, size)
+		self.init_game()
+	
+	def init_game(self):
+		self.attacker_top = [450, 555]
+		self.attacker_left = [435, 580]
+		self.attacker_right = [465, 580]
+		self.attacker = pygame.draw.polygon(self.display, green, (self.attacker_top, self.attacker_left, self.attacker_right), 3)
 
-def main():
-	pygame.init()
-	W = 900
-	H = 600
-	size = (W, H)
-	player_green = (0, 255, 0)
-	display = pygame.display.set_mode(size)
-	bg = pygame.image.load("background.jpg")
-	bg = pygame.transform.scale(bg, size)
-	pygame.display.set_caption('Aviators')
-	clock = pygame.time.Clock()
-
-
-	class Attacker:
-		def __init__(self):
-			pygame.init()
-			self.top = [450, 540] # keep y postion constant
-			self.lpoint = [435, 575]
-			self.rpoint = [465, 575]
-			self.position = pygame.draw.polygon(display, player_green, [self.top, self.lpoint, self.rpoint], 3)
-
-		def move_left(self):
-			# when v pressed move west
-				print("going left") #test
-				#triangle left move	
-				self.top = [(self.top[0]-5), 540]
-				self.lpoint = [(self.lpoint[0]-5), 575]
-				self.rpoint = [(self.rpoint[0]-5), 575]
-				display.fill(bg, (0,0))
-
-		def move_right(self):
-			# when n pressed move east
-				print("going right")
-				self.top = [(self.top[0]+5), 540]
-				self.lpoint = [(self.lpoint[0]+5), 575]
-				self.rpoint = [(self.rpoint[0]+5), 575]
-				display.fill(bg, (0,0))
-		
-			# when SPACE pressed fire
-		def fire(self):
-			if keys[pygame.K_SPACE]:
-				print("fire")
-
-	running = True
-	while running:
-		clock.tick(60)
-		display.blit(bg, (0,0))
-		Attacker()
-
-		for event in pygame.event.get():
-			if event.type == pygame.QUIT:
-				running = False
-				sys.exit()
-
+	def check_input(self):
 		keys = pygame.key.get_pressed()
+
 		if keys[pygame.K_v]:
-			pygame.display.update(Attacker(move_left()))
+			self.attacker_top = [self.attacker_top[0]-5, 555]
+			self.attacker_left = [self.attacker_left[0]-5, 580]
+			self.attacker_right = [self.attacker_right[0]-5, 580]
 			print("going left") #test
-			pass
 			#triangle left move	
-			
+		
 		if keys[pygame.K_n]:
-			pygame.display.update(Attacker(move_right()))
-			print("going right")
-			pass
+
+			print("going right") #test
 			#triangle right move	
 	
 		if keys[pygame.K_SPACE]:
+
 			print("fire")
-			pass
-			#triangle right move	
+			#fire
 
-		
+	def run(self):
+		running = True
+		while running:
+			self.clock.tick(60)
+			self.display.blit(self.bg, (0,0))
+			self.check_input()
+			for event in pygame.event.get():
+				if event.type == pygame.QUIT:
+					running = False
+					sys.exit()
 
-		pygame.display.flip()
-		pygame.display.update() 
-
-pygame.quit()
-
+			pygame.draw.polygon(self.display, green, (self.attacker_top, self.attacker_left, self.attacker_right))
+#([450, 555], [435, 580], [465, 580]), 3)
+			pygame.display.flip()
+			pygame.display.update()
 
 if __name__ == "__main__":
-	main()
+	Main().run()
 
 
