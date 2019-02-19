@@ -9,8 +9,33 @@ from pygame.locals import *
 W = 900
 H = 600
 size = (W, H)
-# player color - green
+# player/bullet color - green
 green = [0, 250, 0]
+bullet_w = 2
+bullet_h = 12
+
+"""
+class Attacker(pygame.sprite.Sprite):
+	def __init__(self):
+"""		
+
+
+
+class Bullet(pygame.sprite.Sprite):
+	 """ This class represents the bullet . """
+	 def __init__(self):
+		  # Call the parent class (Sprite) constructor
+		  super().__init__()
+		  self.image = pygame.Surface([4, 10])
+		  self.image.fill(green)
+		  self.rect = self.image.get_rect()
+
+	 def update(self):
+		  """ Move the bullet. """
+		  self.rect.y -= 8
+
+all_sprites_list = pygame.sprite.Group()
+bullet_list = pygame.sprite.Group()
 
 class Main:
 	def __init__(self):
@@ -18,51 +43,64 @@ class Main:
 		self.clock = pygame.time.Clock()
 		self.display = pygame.display.set_mode(size)
 		pygame.display.set_caption('Aviators')
-# background image
+
+		# background image
 		self.bg = pygame.image.load("background.jpg")
 		self.bg = pygame.transform.scale(self.bg, size)
 		self.init_game()
 	
 	def init_game(self):
-		self.attacker_top = [450, 555]
-		self.attacker_left = [435, 580]
-		self.attacker_right = [465, 580]
-		self.attacker = pygame.draw.polygon(self.display, green, (self.attacker_top, self.attacker_left, self.attacker_right), 3)
+		self.player_top = [450, 555]
+		self.player_left = [435, 580]
+		self.player_right = [465, 580]
+		self.player = pygame.draw.polygon(self.display, green, (self.player_top, self.player_left, self.player_right), 3)
+
 
 	def check_input(self):
 		keys = pygame.key.get_pressed()
-
-		if keys[pygame.K_v]:
+		if keys[pygame.K_f]:
 			#left move	
-			self.attacker_top = [self.attacker_top[0]-5, 555]
-			self.attacker_left = [self.attacker_left[0]-5, 580]
-			self.attacker_right = [self.attacker_right[0]-5, 580]
+			self.player_top = [self.player_top[0]-5, 555]
+			self.player_left = [self.player_left[0]-5, 580]
+			self.player_right = [self.player_right[0]-5, 580]
 		
-		if keys[pygame.K_n]:
+		if keys[pygame.K_j]:
 			#right move	
-			self.attacker_top = [self.attacker_top[0]+5, 555]
-			self.attacker_left = [self.attacker_left[0]+5, 580]
-			self.attacker_right = [self.attacker_right[0]+5, 580]
+			self.player_top = [self.player_top[0]+5, 555]
+			self.player_left = [self.player_left[0]+5, 580]
+			self.player_right = [self.player_right[0]+5, 580]
 	
-		if keys[pygame.K_SPACE]:
-			print("fire")
-			#fire
+		if keys[pygame.K_l]:
+			print('working')
+
+		if keys[pygame.K_s]:
+			print('working')
+
 
 	def run(self):
 		running = True
 		while running:
-			self.clock.tick(60)
 			self.display.blit(self.bg, (0,0))
 			self.check_input()
+
 			for event in pygame.event.get():
 				if event.type == pygame.QUIT:
 					running = False
 					sys.exit()
 
-			pygame.draw.polygon(self.display, green, (self.attacker_top, self.attacker_left, self.attacker_right))
-#([450, 555], [435, 580], [465, 580]), 3)
+				elif event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
+					self.bullet = Bullet()
+					self.bullet.rect.x = self.player_top[0]
+					self.bullet.rect.y = self.player_top[1]
+					all_sprites_list.add(self.bullet)
+					bullet_list.add(self.bullet)
+
+			all_sprites_list.update()
+			all_sprites_list.draw(self.display)
+			pygame.draw.polygon(self.display, green, (self.player_top, self.player_left, self.player_right))
 			pygame.display.flip()
 			pygame.display.update()
+			self.clock.tick(80)
 
 if __name__ == "__main__":
 	Main().run()
