@@ -1,4 +1,5 @@
 # AirJeti, day = 6, *My 100 day challenge* 
+---
 
 ### what I've completed
 	 attacker repeat when reachs bottom
