@@ -28,28 +28,25 @@
 ## movement:
 	player = east to west
 	enemey = random x.axis, north to south
-	bullet = [[player: position facing, south to north], 
-				[attacker: position facing, north to south]]
+	bullet = [[player: position facing, south to north], [attacker: position facing, north to south]]
 
 ## create scoreboard
 #### keep track of:
-	 attacker_count = 20
-	 score_count = # of attacker killed 
+	display = score, health status, time, lives
+	attacker_count = 20
+	score_count = # of attacker killed 
 		if	pygame.sprite.collide_rect(player bullet, attacker): #boolen
 			score_count +=1	
 			attacker_count -=1
-
-	 time = 1 min clock, countdown
-
-	 health = number of times attacker hits player with bullets or rocks
+	time = 1 min clock, countdown
+	health = number of times attacker hits player with bullets or rocks
 		if	pygame.sprite.collide_rect(attacker bullet, player):
 			health -=1
 		if	pygame.sprite.collide_rect(rocks, player):
 			health -=1
 			if health < 1:
 				game state = new game
+	lives = starts with 3, lives-1 when health reaches 0 in game
 		
-	- lives = starts with 3, lives-1 when health reaches 0 in game
-	
 
 
