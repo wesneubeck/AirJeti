@@ -1,12 +1,12 @@
-#AirJeti, day = 6, *My 100 day challenge* 
+# AirJeti, day = 6, *My 100 day challenge* 
 
-###what I've completed
+### what I've completed
 	-	attacker repeat when reachs bottom
 	-  added rocks/speed
-###what I'm working on
+### what I'm working on
 	-  rocks repeat at random y value btw 1, 200/ only goes 2 times through/ WHY???
 
-##game states:
+## game states:
 	new game = start of game
 		init game = starts when RETURN is pressed 
 	running = while loop
@@ -14,7 +14,7 @@
 		screen goes white, says "Game Over" in red
 	level complete = all of enemy killed
 
-##elements:
+## elements:
 	- player
 		green 
 	- attacker
@@ -25,14 +25,14 @@
 		player color
 		attacker color 
 
-##movement:
+## movement:
 	player = east to west
 	enemey = random x.axis, north to south
 	bullet = [[player: position facing, south to north], 
 				[attacker: position facing, north to south]]
 
-##create scoreboard
-####keep track of:
+## create scoreboard
+#### keep track of:
 	- attacker_count = 20
 	- score_count = # of attacker killed 
 		if	pygame.sprite.collide_rect(player bullet, attacker): #boolen
